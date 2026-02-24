@@ -371,6 +371,154 @@ tr.sel-row td{background:rgba(108,71,255,.04)!important}
 /* Offline banner */
 #offline-bar{display:none;background:#fef3c7;border-bottom:1px solid #fcd34d;padding:6px 20px;font-size:12px;color:#92400e;align-items:center;gap:6px;flex-shrink:0}
 #offline-bar.show{display:flex}
+
+/* ══ HAMBURGER BUTTON (mobile only) ══ */
+.hamburger{
+  display:none;
+  width:38px;height:38px;border-radius:9px;border:1.5px solid var(--border);
+  background:#fff;cursor:pointer;align-items:center;justify-content:center;
+  flex-direction:column;gap:5px;flex-shrink:0;transition:all .15s;
+}
+.hamburger:hover{border-color:var(--purple);background:var(--purple-soft)}
+.hamburger span{display:block;width:16px;height:2px;background:var(--t1);border-radius:2px;transition:all .25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Sidebar overlay (mobile) */
+.sidebar-overlay{
+  display:none;position:fixed;inset:0;background:rgba(15,23,42,.45);
+  z-index:49;backdrop-filter:blur(2px);
+}
+.sidebar-overlay.show{display:block}
+
+/* ══ MOBILE BOTTOM NAV ══ */
+.bottom-nav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  background:#fff;border-top:1.5px solid var(--border);
+  padding:6px 0 max(6px, env(safe-area-inset-bottom));
+  z-index:48;
+  justify-content:space-around;align-items:center;
+}
+.bn-item{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:5px 12px;border-radius:10px;cursor:pointer;
+  font-size:9.5px;font-weight:600;color:var(--t2);transition:all .15s;min-width:56px;
+}
+.bn-item .bn-icon{font-size:20px;line-height:1}
+.bn-item.active{color:var(--purple)}
+.bn-item.active .bn-icon{transform:scale(1.1)}
+.bn-item:active{transform:scale(.93)}
+
+/* ══ RESPONSIVE BREAKPOINTS ══ */
+@media (max-width: 768px) {
+  /* Show hamburger, hide search in topbar */
+  .hamburger{display:flex}
+  .sw{display:none}
+
+  /* Topbar smaller */
+  .topbar{padding:0 14px;height:52px;gap:10px}
+  .bc{font-size:14px}
+
+  /* Sidebar becomes overlay drawer */
+  .sidebar{
+    position:fixed;top:0;left:0;bottom:0;
+    z-index:50;
+    transform:translateX(-100%);
+    transition:transform .28s cubic-bezier(.4,0,.2,1);
+    box-shadow:4px 0 24px rgba(15,23,42,.12);
+    width:260px;min-width:260px;
+  }
+  .sidebar.open{transform:translateX(0)}
+
+  /* Main takes full width */
+  .main{width:100%}
+
+  /* Stats: 2 per row on mobile */
+  .sb{padding:12px 12px 0;gap:8px}
+  .sc{min-width:calc(50% - 4px);flex:1 1 calc(50% - 4px);padding:10px 12px;gap:10px}
+  .sc-icon{width:34px;height:34px;font-size:16px}
+  .sl{font-size:9px}
+  .sv{font-size:20px}
+
+  /* Table area */
+  .ta{padding:10px 12px 70px;gap:10px}
+
+  /* Filter bar — stack vertically */
+  .filter-bar{padding:10px 12px;gap:7px}
+  .fbar-title{font-size:12px}
+  .fsep{display:none}
+  .ml-a{display:none}
+
+  /* Chips scroll horizontally */
+  .chips-row{
+    display:flex;gap:6px;overflow-x:auto;width:100%;
+    padding-bottom:2px;scrollbar-width:none;
+  }
+  .chips-row::-webkit-scrollbar{display:none}
+  .chip{flex-shrink:0;font-size:11.5px;padding:5px 11px}
+
+  /* Table: horizontal scroll */
+  .tw{border-radius:10px}
+  table{font-size:12px}
+  thead th{padding:8px 10px;font-size:9px}
+  td{padding:9px 10px}
+
+  /* Hide less important columns on mobile */
+  .col-ngaydk{display:none}
+  .col-goi{display:none}
+  .col-ghichu{display:none}
+  .col-conlai{display:none}
+
+  /* Avatar smaller */
+  .avatar{width:30px;height:30px;font-size:10px}
+  .av-name{font-size:12px}
+  .av-sub{font-size:10px}
+
+  /* Action buttons bigger touch target */
+  .act-btn{width:34px;height:34px;font-size:15px}
+
+  /* Scroll pages */
+  .scroll-page{padding:12px 12px 70px;gap:12px}
+
+  /* Sum pills: 2-3 per row */
+  .sum-pills{padding:12px;gap:7px}
+  .sum-pill{min-width:calc(33% - 5px);flex:1 1 calc(33% - 5px);padding:10px 8px 8px}
+  .sum-pill .sp-num{font-size:22px}
+  .sum-pill .sp-label{font-size:9px}
+  .sum-pill .sp-sub{display:none}
+
+  /* Alert cards: stack */
+  .alert-grid{grid-template-columns:1fr!important}
+
+  /* KPI cards: stack */
+  .kpi-row{flex-direction:column!important}
+
+  /* BD grid: stack */
+  .bd-grid{grid-template-columns:1fr!important}
+
+  /* Modal full width */
+  .modal{width:100%!important;max-width:100%!important;border-radius:20px 20px 0 0!important;position:fixed!important;bottom:0!important;top:auto!important;animation:slideUp .28s cubic-bezier(.4,0,.2,1)!important}
+  @keyframes slideUp{from{transform:translateY(100%)}to{transform:none}}
+  .mbk{align-items:flex-end!important}
+  .modal::before{border-radius:20px 20px 0 0}
+
+  /* Status bar hidden on mobile (covered by bottom nav) */
+  .statusbar{display:none}
+
+  /* Show bottom nav */
+  .bottom-nav{display:flex}
+
+  /* PWA banner smaller */
+  #pwa-banner{font-size:11px;padding:7px 14px;flex-wrap:wrap;gap:7px}
+}
+
+@media (max-width: 400px) {
+  .sc{min-width:calc(50% - 4px)}
+  .sv{font-size:18px}
+  .sum-pill{min-width:calc(50% - 4px)}
+}
 </style>
 </head>
 <body>
@@ -396,9 +544,9 @@ tr.sel-row td{background:rgba(108,71,255,.04)!important}
   </div>
   <nav class="nav">
     <div class="nav-sec">Menu</div>
-    <div class="nv active" id="nav-dashboard" onclick="showPage('dashboard')"><span class="ni">📊</span><span>Bảng điều khiển</span></div>
-    <div class="nv" id="nav-thongke" onclick="showPage('thongke')"><span class="ni">📈</span><span>Thống kê / Báo cáo</span></div>
-    <div class="nv" id="nav-biendog" onclick="showPage('biendog')"><span class="ni">🔄</span><span>Biến động học viên</span></div>
+    <div class="nv active" id="nav-dashboard" onclick="showPage('dashboard');closeSidebar()"><span class="ni">📊</span><span>Bảng điều khiển</span></div>
+    <div class="nv" id="nav-thongke" onclick="showPage('thongke');closeSidebar()"><span class="ni">📈</span><span>Thống kê / Báo cáo</span></div>
+    <div class="nv" id="nav-biendog" onclick="showPage('biendog');closeSidebar()"><span class="ni">🔄</span><span>Biến động học viên</span></div>
     <div class="nav-sec" style="margin-top:4px">Hành động</div>
     <div class="nv" onclick="openAdd()"><span class="ni">➕</span><span>Thêm học viên</span></div>
     <div class="nv" onclick="capNhatTatCa()"><span class="ni">🔁</span><span>Cập nhật tất cả</span></div>
@@ -431,8 +579,14 @@ tr.sel-row td{background:rgba(108,71,255,.04)!important}
     <button class="pwa-dismiss-btn" id="pwa-dismiss-btn">✕</button>
   </div>
 
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
   <!-- Topbar -->
   <div class="topbar">
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()">
+      <span></span><span></span><span></span>
+    </button>
     <div class="bc" id="bc">Bảng điều khiển <span>/ Danh sách học viên</span></div>
     <div class="sw" id="sw-wrap">
       <span class="si">⌕</span>
@@ -477,11 +631,13 @@ tr.sel-row td{background:rgba(108,71,255,.04)!important}
         <button class="btn bg" onclick="capNhatTatCa()">🔁 Cập nhật</button>
         <button class="btn bo" onclick="buNgayLe()">🎉 Bù lễ</button>
         <div class="fsep"></div>
-        <span class="chip active" id="chip-all"     onclick="setChip('all')">Tất cả</span>
-        <span class="chip"        id="chip-active"  onclick="setChip('active')">Hoạt động</span>
-        <span class="chip"        id="chip-warning" onclick="setChip('warning')">Sắp HH</span>
-        <span class="chip"        id="chip-expired" onclick="setChip('expired')">Hết hạn</span>
-        <span class="chip"        id="chip-paused"  onclick="setChip('paused')">Tạm dừng</span>
+        <div class="chips-row">
+          <span class="chip active" id="chip-all"     onclick="setChip('all')">Tất cả</span>
+          <span class="chip"        id="chip-active"  onclick="setChip('active')">Hoạt động</span>
+          <span class="chip"        id="chip-warning" onclick="setChip('warning')">Sắp HH</span>
+          <span class="chip"        id="chip-expired" onclick="setChip('expired')">Hết hạn</span>
+          <span class="chip"        id="chip-paused"  onclick="setChip('paused')">Tạm dừng</span>
+        </div>
         <div class="ml-a"><span class="hint-t" id="row-count">0 học viên</span></div>
       </div>
       <div class="tw">
@@ -489,12 +645,12 @@ tr.sel-row td{background:rgba(108,71,255,.04)!important}
           <thead><tr>
             <th style="width:46px" onclick="sortBy('id')">ID<span class="sa" data-col="id">↕</span></th>
             <th onclick="sortBy('ten')">Học Viên<span class="sa" data-col="ten">↕</span></th>
-            <th onclick="sortBy('ngay_bd')">Ngày ĐK<span class="sa" data-col="ngay_bd">↕</span></th>
-            <th onclick="sortBy('so_ngay')" style="text-align:center">Gói<span class="sa" data-col="so_ngay">↕</span></th>
+            <th class="col-ngaydk" onclick="sortBy('ngay_bd')">Ngày ĐK<span class="sa" data-col="ngay_bd">↕</span></th>
+            <th class="col-goi" onclick="sortBy('so_ngay')" style="text-align:center">Gói<span class="sa" data-col="so_ngay">↕</span></th>
             <th onclick="sortBy('ngay_hh')">Hết Hạn<span class="sa" data-col="ngay_hh">↕</span></th>
-            <th onclick="sortBy('con_lai')" style="text-align:center">Còn Lại<span class="sa" data-col="con_lai">↕</span></th>
+            <th class="col-conlai" onclick="sortBy('con_lai')" style="text-align:center">Còn Lại<span class="sa" data-col="con_lai">↕</span></th>
             <th onclick="sortBy('tt')">Trạng Thái<span class="sa" data-col="tt">↕</span></th>
-            <th>Ghi Chú</th>
+            <th class="col-ghichu">Ghi Chú</th>
             <th style="text-align:center">Thao Tác</th>
           </tr></thead>
           <tbody id="tbody"></tbody>
@@ -1184,8 +1340,30 @@ function tickClock(){
 // Close modals on backdrop
 ['mf','mc'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this){closeForm();closeConfirm();}});});
 
+
+// ── Mobile Sidebar ──
+function toggleSidebar(){
+  const sb=document.querySelector('.sidebar');
+  const ov=document.getElementById('sidebar-overlay');
+  const hb=document.getElementById('hamburger');
+  const open=sb.classList.toggle('open');
+  ov.classList.toggle('show',open);
+  hb.classList.toggle('open',open);
+  document.body.style.overflow=open?'hidden':'';
+}
+function closeSidebar(){
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('show');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeBnActive(){
+  document.querySelectorAll('.bn-item').forEach(x=>x.classList.remove('active'));
+}
+
 // ── Expose to window ──
 Object.assign(window,{
+  toggleSidebar,closeSidebar,closeBnActive,
   showPage,openAdd,openEdit,editSel,closeForm,saveForm,
   delSel,delById,closeConfirm,confirmDelete,
   capNhatTatCa,buNgayLe,exportData,importData,handleImport,
@@ -1238,5 +1416,22 @@ setSt('Đang kết nối Firebase…');
 setInterval(tickClock,1000);tickClock();
 initFirebaseSync();
 </script>
+
+<!-- ══ BOTTOM NAV (mobile) ══ -->
+<nav class="bottom-nav" id="bottom-nav">
+  <div class="bn-item active" id="bn-dashboard" onclick="showPage('dashboard');closeBnActive();this.classList.add('active')">
+    <div class="bn-icon">📊</div>
+    <div>Dashboard</div>
+  </div>
+  <div class="bn-item" id="bn-add" onclick="openAdd()">
+    <div class="bn-icon" style="width:42px;height:42px;background:var(--purple);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;margin-top:-14px;box-shadow:0 4px 14px rgba(108,71,255,.4)">+</div>
+    <div style="margin-top:2px">Thêm</div>
+  </div>
+  <div class="bn-item" id="bn-thongke" onclick="showPage('thongke');closeBnActive();this.classList.add('active')">
+    <div class="bn-icon">📈</div>
+    <div>Thống kê</div>
+  </div>
+</nav>
+
 </body>
 </html>
