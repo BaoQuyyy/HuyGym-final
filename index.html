@@ -362,7 +362,7 @@ tr.sel-row td{background:rgba(108,71,255,.04)!important}
 .cu{animation:cu .3s ease}
 
 /* Loading */
-.loading-overlay{position:fixed;inset:0;background:rgba(255,255,255,.96);backdrop-filter:blur(4px);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.loading-overlay{position:fixed;inset:0;background:rgba(255,255,255,.96);backdrop-filter:blur(4px);z-index:150;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
 .loading-overlay.hidden{display:none}
 .spinner{width:42px;height:42px;border:3px solid var(--border);border-top-color:var(--purple);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -556,6 +556,108 @@ tr.sel-row td{background:rgba(108,71,255,.04)!important}
   .sc{min-width:calc(50% - 4px)}
   .sv{font-size:18px}
 }
+
+/* ══ LOGIN / IDENTITY ══ */
+.login-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
+  backdrop-filter:blur(10px);z-index:400;
+  display:flex;align-items:center;justify-content:center;
+}
+.login-overlay.hidden{display:none}
+.login-box{
+  background:#fff;border-radius:20px;padding:36px 32px 28px;
+  width:360px;max-width:94vw;
+  box-shadow:0 24px 64px rgba(0,0,0,.18);
+  animation:su .25s cubic-bezier(.34,1.5,.64,1);
+  text-align:center;
+}
+.login-logo{font-size:40px;margin-bottom:10px}
+.login-title{font-size:18px;font-weight:800;color:var(--t0);margin-bottom:4px}
+.login-sub{font-size:12px;color:var(--t2);margin-bottom:24px}
+.login-name-input{
+  width:100%;background:#f8f9fc;border:2px solid var(--border2);
+  color:var(--t0);font-family:var(--fb);font-size:14px;font-weight:500;
+  padding:10px 14px;border-radius:10px;outline:none;
+  transition:all .2s;margin-bottom:12px;text-align:center;
+}
+.login-name-input:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(108,71,255,.12)}
+.login-role-row{display:flex;gap:10px;margin-bottom:20px}
+.login-role-btn{
+  flex:1;padding:10px 8px;border-radius:10px;border:2px solid var(--border2);
+  background:#f8f9fc;cursor:pointer;transition:all .15s;
+  font-family:var(--fb);font-size:12px;font-weight:600;color:var(--t1);
+}
+.login-role-btn.selected{border-color:var(--purple);background:rgba(108,71,255,.07);color:var(--purple)}
+.login-role-btn .lrb-icon{font-size:22px;display:block;margin-bottom:4px}
+.login-enter-btn{
+  width:100%;padding:11px;border-radius:10px;border:none;
+  background:var(--purple);color:#fff;font-family:var(--fb);
+  font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;
+  box-shadow:0 4px 14px rgba(108,71,255,.3);
+}
+.login-enter-btn:hover{background:#7c5cfc}
+
+/* User badge in topbar */
+.user-badge{
+  display:flex;align-items:center;gap:7px;cursor:pointer;
+  background:#f8f9fc;border:1.5px solid var(--border2);
+  border-radius:99px;padding:4px 10px 4px 6px;
+  transition:all .15s;flex-shrink:0;
+}
+.user-badge:hover{border-color:var(--purple);background:rgba(108,71,255,.05)}
+.user-avatar{
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:#fff;flex-shrink:0;
+}
+.user-name{font-size:11.5px;font-weight:700;color:var(--t0)}
+.user-role{font-size:9.5px;color:var(--t2);letter-spacing:.3px}
+
+/* Role chip */
+.role-admin{background:rgba(108,71,255,.1);color:var(--purple);border:1px solid rgba(108,71,255,.2);border-radius:5px;padding:1px 6px;font-size:9.5px;font-weight:700}
+.role-user{background:rgba(14,168,104,.1);color:var(--green);border:1px solid rgba(14,168,104,.2);border-radius:5px;padding:1px 6px;font-size:9.5px;font-weight:700}
+
+/* ══ ACTIVITY LOG ══ */
+.log-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:11px 16px;border-bottom:1px solid var(--border);
+  transition:background .1s;
+}
+.log-item:hover{background:#fafbff}
+.log-item:last-child{border-bottom:none}
+.log-icon-wrap{
+  width:34px;height:34px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;flex-shrink:0;margin-top:1px;
+}
+.log-main{flex:1;min-width:0}
+.log-action{font-size:12.5px;font-weight:600;color:var(--t0)}
+.log-detail{font-size:11px;color:var(--t2);margin-top:2px;line-height:1.5}
+.log-time{font-size:10px;color:var(--t2);flex-shrink:0;text-align:right;line-height:1.6}
+.log-who{font-size:10px;font-weight:600;margin-top:2px}
+.undo-btn{
+  background:none;border:1.5px solid var(--border2);color:var(--t1);
+  font-family:var(--fb);font-size:10.5px;font-weight:600;
+  padding:3px 9px;border-radius:7px;cursor:pointer;
+  transition:all .14s;margin-top:4px;flex-shrink:0;
+}
+.undo-btn:hover{border-color:var(--purple);color:var(--purple);background:rgba(108,71,255,.06)}
+.undo-btn:disabled{opacity:.35;cursor:not-allowed}
+
+/* Log filter row */
+.log-filters{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 16px;border-bottom:1.5px solid var(--border);
+  flex-shrink:0;flex-wrap:wrap;background:#fafbff;
+}
+.log-chip{
+  padding:4px 11px;border-radius:99px;
+  border:1.5px solid var(--border2);background:#fff;
+  font-size:11px;font-weight:600;color:var(--t1);
+  cursor:pointer;transition:all .14s;
+}
+.log-chip.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+
 </style>
 </head>
 <body>
@@ -588,6 +690,8 @@ tr.sel-row td{background:rgba(108,71,255,.04)!important}
     <div class="nv-compose" onclick="openAdd();closeSidebar()"><span class="ni">✏️</span><span>Thêm học viên</span></div>
     <div class="nv" onclick="capNhatTatCa()"><span class="ni">🔁</span><span>Cập nhật tất cả</span></div>
     <div class="nv" onclick="buNgayLe()"><span class="ni">🎉</span><span>Bù ngày nghỉ lễ</span></div>
+    <div class="nav-sec" style="margin-top:4px">Nhật ký</div>
+    <div class="nv" id="nav-log" onclick="showPage('log');closeSidebar()"><span class="ni">📋</span><span>Lịch sử hoạt động</span></div>
     <div class="nav-sec" style="margin-top:4px">Dữ liệu</div>
     <div class="nv" onclick="exportData()"><span class="ni">💾</span><span>Xuất JSON</span></div>
     <div class="nv" onclick="importData()"><span class="ni">📂</span><span>Nhập JSON</span></div>
@@ -625,6 +729,13 @@ tr.sel-row td{background:rgba(108,71,255,.04)!important}
       <span></span><span></span><span></span>
     </button>
     <div class="bc" id="bc">Bảng điều khiển <span>/ Danh sách học viên</span></div>
+    <div class="user-badge" id="user-badge" onclick="doLogout()" title="Đổi người dùng">
+      <div class="user-avatar" id="user-avatar" style="background:var(--purple)">?</div>
+      <div>
+        <div class="user-name" id="user-name-display">Chưa đăng nhập</div>
+        <div class="user-role" id="user-role-display">—</div>
+      </div>
+    </div>
     <div class="sw" id="sw-wrap">
       <span class="si">⌕</span>
       <input type="text" id="search" placeholder="Tìm tên, SĐT, ghi chú..." oninput="renderTable()"/>
@@ -704,6 +815,26 @@ tr.sel-row td{background:rgba(108,71,255,.04)!important}
   <!-- ══ PAGE: Biến động ══ -->
   <div class="page" id="page-biendog">
     <div class="scroll-page" id="bdp"></div>
+  </div>
+
+
+  <!-- ══ PAGE: Nhật ký ══ -->
+  <div class="page" id="page-log">
+    <div style="display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden">
+      <div class="log-filters" id="log-filters">
+        <span style="font-size:12px;font-weight:700;color:var(--t0);margin-right:4px">🗂 Lọc:</span>
+        <button class="log-chip active" onclick="setLogFilter('all')">Tất cả</button>
+        <button class="log-chip" onclick="setLogFilter('add')">➕ Thêm</button>
+        <button class="log-chip" onclick="setLogFilter('edit')">✏️ Sửa</button>
+        <button class="log-chip" onclick="setLogFilter('delete')">🗑 Xóa</button>
+        <button class="log-chip" onclick="setLogFilter('other')">⚙️ Khác</button>
+        <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
+          <span id="log-count" style="font-size:11px;color:var(--t2)"></span>
+          <button class="btn bs" style="font-size:11px;padding:4px 10px" onclick="clearAllLogs()" id="clear-log-btn">🗑 Xóa tất cả log</button>
+        </div>
+      </div>
+      <div style="flex:1;overflow-y:auto;min-height:0" id="log-list"></div>
+    </div>
   </div>
 
   <!-- Status bar -->
@@ -884,9 +1015,28 @@ function setFbStatus(s,l){
 }
 
 // ── Firebase Sync ──
+
+function hideLoading(){
+  const ov = document.getElementById('loading-overlay');
+  if(ov) ov.classList.add('hidden');
+  initIdentity();
+}
+
 function initFirebaseSync(){
   setFbStatus('syncing','Đang kết nối…');
   document.getElementById('loading-msg').textContent='Đang tải dữ liệu từ Firebase…';
+
+  // Timeout fallback: nếu 6 giây chưa xong → bỏ qua, dùng local
+  const fbTimeout = setTimeout(()=>{
+    if(!_fbReady){
+      console.warn('Firebase timeout — dùng dữ liệu cục bộ');
+      _fbReady = true;
+      loadLocalFallback();
+      hideLoading();
+      setFbStatus('error','Timeout');
+      toast('Firebase chậm — đang dùng dữ liệu cục bộ','warn');
+    }
+  }, 6000);
   onValue(dbRef,(snapshot)=>{
     const raw=snapshot.val();
     if(raw!==null&&raw!==undefined){
@@ -896,14 +1046,14 @@ function initFirebaseSync(){
       try{const loc=localStorage.getItem(SK);if(loc){recs=JSON.parse(loc);recs.forEach(r=>parseRec(r));saveData();toast('Đã di chuyển localStorage → Firebase ☁️','ok');}else recs=[];}catch(e){recs=[];}
     } else{recs=[];}
     recalcAll();renderTable();
-    if(!_fbReady){_fbReady=true;document.getElementById('loading-overlay').classList.add('hidden');toast('Kết nối Firebase thành công! ☁️','ok');}
+    clearTimeout(fbTimeout);if(!_fbReady){_fbReady=true;hideLoading();toast('Kết nối Firebase thành công! ☁️','ok');}
     setFbStatus('online','Đồng bộ ✓');
     setSt('Firebase · '+recs.length+' học viên · '+new Date().toLocaleTimeString('vi-VN'));
     try{localStorage.setItem(SK,JSON.stringify(serializeRecs(recs)));}catch(e){}
   },(error)=>{
     console.error('Firebase error:',error);
     setFbStatus('error','Lỗi kết nối');
-    if(!_fbReady){_fbReady=true;loadLocalFallback();document.getElementById('loading-overlay').classList.add('hidden');toast('Không kết nối được Firebase. Dùng dữ liệu cục bộ.','warn');}
+    if(!_fbReady){_fbReady=true;loadLocalFallback();clearTimeout(fbTimeout);hideLoading();toast('Không kết nối được Firebase. Dùng dữ liệu cục bộ.','warn');}
   });
 }
 
@@ -924,11 +1074,19 @@ function showPage(p){
   document.querySelectorAll('.nv').forEach(x=>x.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
   const ni=document.getElementById('nav-'+p);if(ni) ni.classList.add('active');
-  const bcs={dashboard:'Bảng điều khiển <span>/ Danh sách học viên</span>',thongke:'Thống kê <span>/ Báo cáo tổng hợp</span>',biendog:'Biến động <span>/ So sánh tháng</span>'};
+  const bcs={
+    dashboard:'Bảng điều khiển <span>/ Danh sách học viên</span>',
+    thongke:'Thống kê <span>/ Báo cáo tổng hợp</span>',
+    biendog:'Biến động <span>/ So sánh tháng</span>',
+    log:'📋 Nhật ký <span>/ Lịch sử hoạt động</span>',
+  };
   document.getElementById('bc').innerHTML=bcs[p]||'';
   document.getElementById('sw-wrap').style.visibility=p==='dashboard'?'':'hidden';
+  const picker=document.getElementById('bd-picker');
+  if(picker) picker.classList.toggle('show', p==='biendog');
   if(p==='thongke') renderTK();
   if(p==='biendog'){bdPopulateMonthSel();renderBD();}
+  if(p==='log') renderLog();
 }
 
 // ── Chip Filter ──
@@ -1050,11 +1208,22 @@ function saveForm(){
   const data={ten,sdt:document.getElementById('f-sdt').value.trim(),ngay_bd:bd,so_ngay:sn,ngay_hh:hh,con_lai:cl,ngay_bu:nb,tt,ghi_chu:gc,gia};
   if(eId!==null){
     const i=recs.findIndex(r=>r.id===eId);
-    if(i>=0){const eDk=recs[i].ngay_dk;recs[i]={...recs[i],...data};if(eDk) recs[i].ngay_dk=eDk;}
+    if(i>=0){
+      const before={...recs[i], ngay_bd:recs[i].ngay_bd instanceof Date?recs[i].ngay_bd.toISOString():recs[i].ngay_bd, ngay_hh:recs[i].ngay_hh instanceof Date?recs[i].ngay_hh.toISOString():recs[i].ngay_hh, ngay_dk:recs[i].ngay_dk instanceof Date?recs[i].ngay_dk.toISOString():recs[i].ngay_dk};
+      const eDk=recs[i].ngay_dk; recs[i]={...recs[i],...data}; if(eDk) recs[i].ngay_dk=eDk;
+      const after={...recs[i], ngay_bd:recs[i].ngay_bd instanceof Date?recs[i].ngay_bd.toISOString():recs[i].ngay_bd, ngay_hh:recs[i].ngay_hh instanceof Date?recs[i].ngay_hh.toISOString():recs[i].ngay_hh};
+      // Compute changes
+      const changes={};
+      const fields={ten:'Tên',sdt:'SĐT',so_ngay:'Gói',ngay_bu:'Ngày bù',tt:'T.thái',ghi_chu:'Ghi chú',gia:'Giá'};
+      Object.keys(fields).forEach(k=>{ if(String(before[k]||'')!==String(after[k]||'')) changes[fields[k]]=[before[k]||'',after[k]||'']; });
+      logAct('edit',{before,after,changes,ten});
+    }
     toast('Đã cập nhật: '+ten,'ok');
   }else{
     const nid=recs.length?Math.max(...recs.map(r=>r.id))+1:1;
     recs.push({id:nid,...data,ngay_dk:bd});
+    const newRec=recs[recs.length-1];
+    logAct('add',{...serializeRecs([newRec])[0], id:nid});
     toast('Đã thêm: '+ten,'ok');
   }
   saveData();renderTable();closeForm();setSt('Đã lưu: '+ten);
@@ -1068,18 +1237,23 @@ function delSel(){
 }
 function closeConfirm(){document.getElementById('mc').classList.remove('show');dId=null;}
 function confirmDelete(){
-  if(!dId) return;const r=recs.find(x=>x.id===dId);
+  if(!dId) return;
+  const r=recs.find(x=>x.id===dId);
+  if(r){
+    const snap={...r, ngay_bd:r.ngay_bd instanceof Date?r.ngay_bd.toISOString():r.ngay_bd, ngay_hh:r.ngay_hh instanceof Date?r.ngay_hh.toISOString():r.ngay_hh, ngay_dk:r.ngay_dk instanceof Date?r.ngay_dk.toISOString():r.ngay_dk};
+    logAct('delete', snap);
+  }
   recs=recs.filter(x=>x.id!==dId);recs.forEach((r,i)=>r.id=i+1);
   selId=null;dId=null;
   saveData();renderTable();closeConfirm();toast('Đã xóa: '+(r?r.ten:''),'warn');
 }
 
 // ── Actions ──
-function capNhatTatCa(){recalcAll();saveData();renderTable();toast('Đã cập nhật '+recs.length+' học viên','ok');setSt('Cập nhật xong '+recs.length+' học viên');}
+function capNhatTatCa(){recalcAll();saveData();renderTable();logAct('update_all',{count:recs.length});toast('Đã cập nhật '+recs.length+' học viên','ok');setSt('Cập nhật xong '+recs.length+' học viên');}
 function buNgayLe(){
   const n=parseInt(prompt('Số ngày bù cho Hoạt Động + Sắp Hết Hạn:','1'));if(!n||n<1) return;
   let cnt=0;recs.forEach(r=>{if(r.tt==='active'||r.tt==='warning'){r.ngay_bu=(r.ngay_bu||0)+n;recalc(r);cnt++;}});
-  saveData();renderTable();toast('Đã bù '+n+' ngày cho '+cnt+' học viên','ok');
+  saveData();renderTable();logAct('holiday',{days:n,count:cnt});toast('Đã bù '+n+' ngày cho '+cnt+' học viên','ok');
 }
 function exportData(){
   const j=JSON.stringify(serializeRecs(recs),null,2);const b=new Blob([j],{type:'application/json'});
@@ -1093,7 +1267,7 @@ function handleImport(e){
   const reader=new FileReader();
   reader.onload=ev=>{
     try{let d=JSON.parse(ev.target.result);if(!Array.isArray(d)&&d.records) d=d.records;if(!Array.isArray(d)) throw 0;
-      recs=d.map(r=>parseRec({...r}));recalcAll();saveData();renderTable();toast('Đã nhập '+recs.length+' học viên → Firebase ☁️','ok');
+      recs=d.map(r=>parseRec({...r}));recalcAll();saveData();renderTable();logAct('import',{count:recs.length});toast('Đã nhập '+recs.length+' học viên → Firebase ☁️','ok');
     }catch{toast('File JSON không hợp lệ!','err');}
   };
   reader.readAsText(file);e.target.value='';
@@ -1399,6 +1573,228 @@ function closeBnActive(){
 }
 
 // ── Expose to window ──
+
+// ══════════════════════════════════════════════════════
+// IDENTITY / LOGIN
+// ══════════════════════════════════════════════════════
+const USER_KEY = 'gym_user_v1';
+const ADMIN_PASS = '0502';
+let currentUser = null;
+let selectedRole = 'user';
+
+const USER_COLORS = ['#6c47ff','#0ea868','#e0722a','#e03a6a','#0891b2','#7c3aed','#059669','#dc2626'];
+function nameToColor(n){ let h=0; for(let i=0;i<n.length;i++) h=(h*31+n.charCodeAt(i))&0xffff; return USER_COLORS[h%USER_COLORS.length]; }
+function nameInitials(n){ const w=n.trim().split(' '); return (w.length>1?w[0][0]+w[w.length-1][0]:w[0].slice(0,2)).toUpperCase(); }
+
+function selectRole(r){
+  selectedRole = r;
+  const btnAdmin = document.getElementById('role-btn-admin');
+  const btnUser  = document.getElementById('role-btn-user');
+  const passRow  = document.getElementById('admin-pass-row');
+  if(btnAdmin) btnAdmin.classList.toggle('selected', r==='admin');
+  if(btnUser)  btnUser.classList.toggle('selected',  r==='user');
+  // Show password field only for admin
+  if(passRow) passRow.style.display = r==='admin' ? 'block' : 'none';
+  if(r==='admin'){
+    setTimeout(()=>{ const p=document.getElementById('login-pass'); if(p) p.focus(); }, 50);
+  }
+}
+
+function doLogin(){
+  const nameEl = document.getElementById('login-name');
+  const passEl = document.getElementById('login-pass');
+  const name = nameEl ? nameEl.value.trim() : '';
+  if(!name){ if(nameEl) nameEl.focus(); toast('Vui lòng nhập tên!','warn'); return; }
+  // Admin password check
+  if(selectedRole === 'admin'){
+    const pass = passEl ? passEl.value.trim() : '';
+    if(pass !== ADMIN_PASS){
+      toast('Mật khẩu Admin không đúng!','err');
+      if(passEl){ passEl.value=''; passEl.focus(); passEl.style.borderColor='var(--red)'; setTimeout(()=>passEl.style.borderColor='',1500); }
+      return;
+    }
+  }
+  currentUser = { name, role: selectedRole, color: nameToColor(name) };
+  try{ localStorage.setItem(USER_KEY, JSON.stringify(currentUser)); } catch(e){}
+  const ov = document.getElementById('login-overlay');
+  if(ov) ov.classList.add('hidden');
+  updateUserBadge();
+  toast('Xin chào, ' + name + (selectedRole==='admin'?' 👑':' 👋'), 'ok');
+}
+
+function doLogout(){
+  if(!confirm('Đổi người dùng?\n(Dữ liệu không bị ảnh hưởng)')) return;
+  currentUser = null;
+  try{ localStorage.removeItem(USER_KEY); } catch(e){}
+  // Reset form
+  const ni = document.getElementById('login-name'); if(ni) ni.value='';
+  const pi = document.getElementById('login-pass'); if(pi) pi.value='';
+  selectRole('user');
+  const ov = document.getElementById('login-overlay');
+  if(ov) ov.classList.remove('hidden');
+}
+
+function updateUserBadge(){
+  if(!currentUser) return;
+  const av = document.getElementById('user-avatar');
+  const nm = document.getElementById('user-name-display');
+  const rl = document.getElementById('user-role-display');
+  if(av){ av.textContent=nameInitials(currentUser.name); av.style.background=currentUser.color; }
+  if(nm) nm.textContent = currentUser.name;
+  if(rl) rl.textContent = currentUser.role==='admin' ? '👑 Admin' : '👤 Nhân viên';
+}
+
+function initIdentity(){
+  try{
+    const saved = localStorage.getItem(USER_KEY);
+    if(saved){
+      const u = JSON.parse(saved);
+      if(u && u.name){ currentUser=u; updateUserBadge(); return; }
+    }
+  } catch(e){}
+  // No saved user — show login
+  const ov = document.getElementById('login-overlay');
+  if(ov) ov.classList.remove('hidden');
+  setTimeout(()=>{ const inp=document.getElementById('login-name'); if(inp) inp.focus(); }, 80);
+}
+
+// ══════════════════════════════════════════════════════
+// ACTIVITY LOG
+// ══════════════════════════════════════════════════════
+const logRef = ref(fbDB, 'activity_log');
+let activityLog = [];
+let logFilter = 'all';
+
+function logAct(action, data){
+  if(!currentUser) return;
+  const entry = {
+    id: Date.now()+'_'+Math.random().toString(36).slice(2,6),
+    ts: new Date().toISOString(),
+    user: currentUser.name, role: currentUser.role, color: currentUser.color,
+    action, data,
+  };
+  activityLog.unshift(entry);
+  const entryRef = ref(fbDB, 'activity_log/'+entry.id);
+  set(entryRef, entry).catch(e=>console.error('Log save error:',e));
+  renderLog();
+}
+
+function initLogSync(){
+  onValue(logRef, snap=>{
+    const raw=snap.val();
+    activityLog = raw ? Object.values(raw).sort((a,b)=>b.ts.localeCompare(a.ts)) : [];
+    renderLog();
+  }, e=>console.error('Log sync error:',e));
+}
+
+const ACTION_META = {
+  add:        {icon:'➕',label:'Thêm học viên',   bg:'rgba(14,168,104,.1)', col:'var(--green)'},
+  edit:       {icon:'✏️',label:'Sửa học viên',    bg:'rgba(108,71,255,.1)',col:'var(--purple)'},
+  delete:     {icon:'🗑️',label:'Xóa học viên',    bg:'rgba(224,58,106,.1)',col:'var(--red)'},
+  update_all: {icon:'🔁',label:'Cập nhật tất cả', bg:'rgba(14,132,168,.1)',col:'#0891b2'},
+  holiday:    {icon:'🎉',label:'Bù ngày nghỉ lễ', bg:'rgba(224,114,42,.1)',col:'var(--orange)'},
+  import:     {icon:'📂',label:'Nhập dữ liệu',    bg:'rgba(108,71,255,.1)',col:'var(--purple)'},
+  undo:       {icon:'↩️',label:'Hoàn tác',         bg:'rgba(74,88,120,.1)', col:'var(--t1)'},
+};
+
+function setLogFilter(f){
+  logFilter=f;
+  document.querySelectorAll('.log-chip').forEach((el,i)=>{
+    const map=['all','add','edit','delete','other'];
+    el.classList.toggle('active', map[i]===f);
+  });
+  renderLog();
+}
+
+function renderLog(){
+  const el=document.getElementById('log-list');
+  const cnt=document.getElementById('log-count');
+  const clearBtn=document.getElementById('clear-log-btn');
+  if(!el) return;
+  let filtered=activityLog;
+  if(logFilter!=='all'){
+    const other=['update_all','holiday','import','undo'];
+    filtered = logFilter==='other' ? activityLog.filter(x=>other.includes(x.action)) : activityLog.filter(x=>x.action===logFilter);
+  }
+  if(cnt) cnt.textContent=filtered.length+' thao tác';
+  if(clearBtn) clearBtn.style.display=currentUser?.role==='admin'?'':'none';
+  if(!filtered.length){
+    el.innerHTML=`<div style="display:flex;flex-direction:column;align-items:center;padding:60px 20px;color:var(--t2);gap:10px"><div style="font-size:40px;opacity:.2">📋</div><div style="font-weight:600">Chưa có hoạt động nào</div></div>`;
+    return;
+  }
+  el.innerHTML=filtered.map(entry=>{
+    const m=ACTION_META[entry.action]||{icon:'⚙️',label:entry.action,bg:'var(--bg-input)',col:'var(--t2)'};
+    const dt=new Date(entry.ts);
+    const dateStr=dt.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'});
+    const timeStr=dt.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    const canUndo=currentUser?.role==='admin'&&['add','edit','delete'].includes(entry.action);
+    const roleBadge=entry.role==='admin'?'<span class="role-admin">Admin</span>':'<span class="role-user">NV</span>';
+    let desc='';
+    if(entry.data){
+      if(entry.action==='add') desc=`Thêm mới: <b>${esc(entry.data.ten||'')}</b> · ${esc(entry.data.sdt||'—')} · ${entry.data.so_ngay||0} ngày`;
+      else if(entry.action==='edit'){
+        desc=`<b>${esc(entry.data.after?.ten||entry.data.ten||'')}</b>`;
+        if(entry.data.changes&&Object.keys(entry.data.changes).length){
+          const parts=Object.entries(entry.data.changes).map(([k,v])=>`${k}: <i>${esc(String(v[0]||''))}</i> → <b>${esc(String(v[1]||''))}</b>`);
+          desc+=' · '+parts.slice(0,3).join(', ')+(parts.length>3?'…':'');
+        }
+      }
+      else if(entry.action==='delete') desc=`Xóa: <b>${esc(entry.data.ten||'')}</b> · ${esc(entry.data.sdt||'—')}`;
+      else if(entry.action==='update_all') desc=`Cập nhật ${entry.data.count||0} học viên`;
+      else if(entry.action==='holiday') desc=`Bù ${entry.data.days||0} ngày cho ${entry.data.count||0} học viên`;
+      else if(entry.action==='import') desc=`Nhập ${entry.data.count||0} học viên`;
+      else if(entry.action==='undo') desc=`Hoàn tác: ${entry.data.what||''}`;
+    }
+    return `<div class="log-item">
+      <div class="log-icon-wrap" style="background:${m.bg}">${m.icon}</div>
+      <div class="log-main">
+        <div class="log-action">${m.label}</div>
+        <div class="log-detail">${desc}</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
+          <div class="log-who" style="color:${entry.color||'var(--purple)'}">${esc(entry.user||'?')}</div>
+          ${roleBadge}
+          ${canUndo?`<button class="undo-btn" onclick="undoEntry('${entry.id}')">↩ Hoàn tác</button>`:''}
+        </div>
+      </div>
+      <div class="log-time">${dateStr}<br/>${timeStr}</div>
+    </div>`;
+  }).join('');
+}
+
+function undoEntry(id){
+  if(currentUser?.role!=='admin'){toast('Chỉ Admin mới có thể hoàn tác!','warn');return;}
+  const entry=activityLog.find(x=>x.id===id);
+  if(!entry){toast('Không tìm thấy thao tác!','warn');return;}
+  if(!confirm('Hoàn tác: '+((ACTION_META[entry.action]||{}).label||entry.action)+' bởi '+entry.user)) return;
+  let desc='';
+  if(entry.action==='add'){
+    const bLen=recs.length;
+    recs=recs.filter(r=>!(r.ten===entry.data.ten&&r.sdt===entry.data.sdt));
+    if(recs.length===bLen&&entry.data.id) recs=recs.filter(r=>r.id!==entry.data.id);
+    recs.forEach((r,i)=>r.id=i+1);
+    desc='Hoàn tác thêm: '+entry.data.ten;
+  } else if(entry.action==='delete'){
+    const restored=parseRec({...entry.data});
+    restored.id=recs.length?Math.max(...recs.map(r=>r.id))+1:1;
+    recs.push(restored); recalcAll();
+    desc='Hoàn tác xóa: '+entry.data.ten;
+  } else if(entry.action==='edit'&&entry.data.before){
+    const idx=recs.findIndex(r=>r.id===entry.data.before.id);
+    if(idx>=0){recs[idx]=parseRec({...entry.data.before});recalc(recs[idx]);}
+    desc='Hoàn tác sửa: '+(entry.data.after?.ten||entry.data.before?.ten||'');
+  }
+  saveData(); renderTable(); logAct('undo',{what:desc,ref_id:id});
+  toast('Đã hoàn tác thành công! ↩','ok');
+}
+
+function clearAllLogs(){
+  if(currentUser?.role!=='admin'){toast('Chỉ Admin mới có thể xóa log!','warn');return;}
+  if(!confirm('Xóa toàn bộ lịch sử hoạt động?\nKhông thể hoàn tác!')) return;
+  set(logRef,null).catch(e=>console.error(e));
+  activityLog=[]; renderLog();
+  toast('Đã xóa toàn bộ lịch sử','warn');
+}
+
 Object.assign(window,{
   toggleSidebar,closeSidebar,closeBnActive,
   showPage,openAdd,openEdit,editSel,closeForm,saveForm,
@@ -1406,6 +1802,8 @@ Object.assign(window,{
   capNhatTatCa,buNgayLe,exportData,importData,handleImport,
   sortBy,selRow,renderTable,setChip,
   openAM,closeAM,jumpToDashboard,
+  doLogin,doLogout,selectRole,
+  setLogFilter,renderLog,undoEntry,clearAllLogs,
   renderTK,renderBD,bdGoToday,bdPopulateMonthSel,bdChangeThis,bdChangePrev,
 });
 
@@ -1452,6 +1850,7 @@ updateOnlineStatus();
 setSt('Đang kết nối Firebase…');
 setInterval(tickClock,1000);tickClock();
 initFirebaseSync();
+initLogSync();
 </script>
 
 <!-- ══ BOTTOM NAV (mobile) ══ -->
@@ -1470,5 +1869,37 @@ initFirebaseSync();
   </div>
 </nav>
 
+
+<!-- ══ LOGIN OVERLAY ══ -->
+<div class="login-overlay hidden" id="login-overlay">
+  <div class="login-box">
+    <div class="login-logo">🏋️</div>
+    <div class="login-title">HUY GYM</div>
+    <div class="login-sub">Nhập tên của bạn để bắt đầu sử dụng</div>
+    <input class="login-name-input" id="login-name"
+      placeholder="Ví dụ: Huy, Lan, Minh…" maxlength="30"
+      onkeydown="if(event.key==='Enter')doLogin()"/>
+    <div class="login-role-row">
+      <button class="login-role-btn" id="role-btn-admin" onclick="selectRole('admin')">
+        <span class="lrb-icon">👑</span>
+        Admin
+        <div style="font-size:9px;color:var(--t2);font-weight:400;margin-top:2px">Toàn quyền</div>
+      </button>
+      <button class="login-role-btn selected" id="role-btn-user" onclick="selectRole('user')">
+        <span class="lrb-icon">👤</span>
+        Nhân viên
+        <div style="font-size:9px;color:var(--t2);font-weight:400;margin-top:2px">Xem + chỉnh sửa</div>
+      </button>
+    </div>
+    <div id="admin-pass-row" style="display:none;margin-bottom:14px">
+      <input class="login-name-input" id="login-pass" type="password"
+        placeholder="Nhập mật khẩu Admin…"
+        onkeydown="if(event.key==='Enter')doLogin()"
+        style="margin-bottom:0"/>
+    </div>
+    <button class="login-enter-btn" onclick="doLogin()">Vào hệ thống →</button>
+    <div style="font-size:10px;color:var(--t2);margin-top:14px">Tên sẽ được lưu trên thiết bị này</div>
+  </div>
+</div>
 </body>
 </html>
