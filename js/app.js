@@ -19,7 +19,7 @@ import {
   openAddMember, openEditMember, editSelectedMember,
   closeForm, saveForm,
   confirmDeleteSelected, deleteById, closeConfirmDialog, executeDelete,
-  updateAllMembers, addHolidayBonus,
+  updateAllMembers, addHolidayBonus, closeBuLe, confirmBuLe,
   exportData, importData, handleImportFile,
 } from './crud.js';
 import {
@@ -53,6 +53,8 @@ Object.assign(window, {
   // Bulk actions
   capNhatTatCa:    updateAllMembers,
   buNgayLe:        addHolidayBonus,
+  closeBuLe,
+  confirmBuLe,
   exportData,
   importData,
   handleImport:    handleImportFile,
@@ -91,6 +93,13 @@ Object.assign(window, {
   setStaffDate:    setStaffDateFilter,
 });
 
+// ── Search: debounce 200ms ──
+let _searchTimer;
+document.getElementById('search')?.addEventListener('input', () => {
+  clearTimeout(_searchTimer);
+  _searchTimer = setTimeout(() => renderTable(), 200);
+});
+
 // ── Keyboard Shortcuts ──
 document.addEventListener('keydown', e => {
   const isFormOpen = document.getElementById('mf')?.classList.contains('show');
@@ -101,6 +110,7 @@ document.addEventListener('keydown', e => {
     closeForm();
     closeConfirmDialog();
     closeAlertModal();
+    closeBuLe();
   }
 });
 
