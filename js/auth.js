@@ -2,7 +2,7 @@
  * auth.js — Xử lý đăng nhập / identity người dùng
  */
 
-import { STORAGE_KEY_USER, ADMIN_PASSWORD, ROLE, USER_COLORS } from './constants.js';
+import { STORAGE_KEY_USER, ADMIN_PASSWORD_HASH, ROLE, USER_COLORS } from './constants.js';
 import { getColorFromName, getNameInitials }                    from './utils.js';
 import { authState }                                            from './state.js';
 import { showToast }                                            from './ui.js';
@@ -29,7 +29,7 @@ export function selectRole(role) {
 }
 
 // ── Đăng nhập ──
-export function doLogin() {
+export async function doLogin() {
   const nameInput = document.getElementById('login-name');
   const passInput = document.getElementById('login-pass');
   const name = nameInput?.value.trim() ?? '';
@@ -43,7 +43,9 @@ export function doLogin() {
   // Kiểm tra mật khẩu nếu chọn Admin
   if (authState.selectedRole === ROLE.ADMIN) {
     const password = passInput?.value.trim() ?? '';
-    if (password !== ADMIN_PASSWORD) {
+    const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(password));
+    const hashHex = [...new Uint8Array(hashBuffer)].map(x => x.toString(16).padStart(2, '0')).join('');
+    if (hashHex !== ADMIN_PASSWORD_HASH) {
       showToast('Mật khẩu Admin không đúng!', 'err');
       if (passInput) {
         passInput.value = '';
